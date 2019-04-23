@@ -20,14 +20,14 @@ public class Ship extends MovingThing {
     }
 
     public Ship(int x, int y) {
-        super(x,y);
+        super(x, y);
     }
 
     public Ship(int x, int y, int s) {
         //add code here
-        super(x,y);
+        super(x, y);
         speed = s;
-        
+
     }
 
     public Ship(int x, int y, int w, int h, int s) {
@@ -51,17 +51,17 @@ public class Ship extends MovingThing {
     }
 
     public void move(String direction) {
-        if(direction.equals("DOWN")){
-            super.setY(super.getY()+getSpeed());
+        if (direction.equals("DOWN")) {
+            super.setY(super.getY() + getSpeed());
         }
-        if(direction.equals("UP")){
-            super.setY(super.getY()-getSpeed());
+        if (direction.equals("UP")) {
+            super.setY(super.getY() - getSpeed());
         }
-        if(direction.equals("LEFT")){
-            super.setX(super.getX()-getSpeed());
+        if (direction.equals("LEFT")) {
+            super.setX(super.getX() - getSpeed());
         }
-        if(direction.equals("RIGHT")){
-            super.setX(super.getX()+getSpeed());
+        if (direction.equals("RIGHT")) {
+            super.setX(super.getX() + getSpeed());
         }
     }
 

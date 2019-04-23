@@ -20,7 +20,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
     private Ship ship;
     private Alien alienOne;
     private Alien alienTwo;
-
+    private Bullets bullet;
     /* uncomment once you are ready for this part
      *
      private AlienHorde horde;
@@ -39,7 +39,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         ship = new Ship(300,300,60,60,2);
         alienOne = new Alien(100,100,40,40,2);
         alienTwo = new Alien(200,100,40,40,2);
-
+        bullet = new Bullets();
         this.addKeyListener(this);
         new Thread(this).start();
 
@@ -81,14 +81,46 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         if (keys[3] == true) {
             ship.move("DOWN");
         }
+        if (keys[4] == true) {
+            bullet.add(new Ammo(ship.getX()+ship.getWidth()/2-3,ship.getY()));
+            keys[4] = false;
+        }
         ship.draw(graphToBack);
         alienOne.draw(graphToBack);
         alienTwo.draw(graphToBack);
+        bullet.drawEmAll(graphToBack);
+        bullet.moveEmAll();
 
+        
 
         
         //add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-        
+        if (ship.getX() < 0) {
+            ship.setX(0);
+        }
+        if (ship.getX() > 800 - ship.getWidth()) {
+            ship.setX(800 - ship.getWidth());
+        }
+        if (ship.getY() < 0) {
+            ship.setY(0);
+        }
+        if (ship.getY() > 600 - ship.getHeight()) {
+            ship.setY(600 - ship.getHeight());
+        }
+        for (Ammo a : bullet.getList()) {
+            if (a.getY() >= alienOne.getY() &&a.getY()<=alienOne.getY()+alienOne.getHeight()&&a.getX() >= alienOne.getX()&&a.getX()<= alienOne.getX()+alienOne.getWidth() ) {
+                alienOne.setHeight(0);
+                alienOne.setWidth(0);
+                a.setWidth(0);
+                a.setHeight(0);
+            }
+            if (a.getY() >= alienTwo.getY() && a.getY()<=alienTwo.getY()+alienTwo.getHeight()&& a.getX() >= alienTwo.getX()&&a.getX()<= alienTwo.getX()+alienTwo.getWidth()) {
+                alienTwo.setHeight(0);
+                alienTwo.setWidth(0);
+                a.setWidth(0);
+                a.setHeight(0);
+            }
+        }
         twoDGraph.drawImage(back, null, 0, 0);
     }
 

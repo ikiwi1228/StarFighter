@@ -18,11 +18,12 @@ public class Ammo extends MovingThing {
     }
 
     public Ammo(int x, int y) {
-        super(x,y);
+        super(x, y);
+        speed = 5;
     }
 
     public Ammo(int x, int y, int s) {
-        super(x,y);
+        super(x, y);
         speed = s;
     }
 
@@ -36,22 +37,23 @@ public class Ammo extends MovingThing {
 
     public void draw(Graphics window) {
         //add code to draw the ammo
+        window.setColor(Color.yellow);
         window.fillOval(super.getX(), super.getY(), 5, 5);
     }
 
     public void move(String direction) {
         //add code to draw the ammo
-        if(direction.equals("DOWN")){
-            super.setY(super.getY()+getSpeed());
+        if (direction.equals("DOWN")) {
+            super.setY(super.getY() + getSpeed());
         }
-        if(direction.equals("UP")){
-            super.setY(super.getY()-getSpeed());
+        if (direction.equals("UP")) {
+            super.setY(super.getY() - getSpeed());
         }
-        if(direction.equals("LEFT")){
-            super.setX(super.getX()-getSpeed());
+        if (direction.equals("LEFT")) {
+            super.setX(super.getX() - getSpeed());
         }
-        if(direction.equals("RIGHT")){
-            super.setX(super.getX()+getSpeed());
+        if (direction.equals("RIGHT")) {
+            super.setX(super.getX() + getSpeed());
         }
     }
 

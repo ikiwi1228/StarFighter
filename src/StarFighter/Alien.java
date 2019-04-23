@@ -20,11 +20,11 @@ public class Alien extends MovingThing {
     }
 
     public Alien(int x, int y) {
-        super(x,y);
+        super(x, y);
     }
 
     public Alien(int x, int y, int s) {
-        super(x,y);
+        super(x, y);
         speed = s;
     }
 
@@ -50,17 +50,17 @@ public class Alien extends MovingThing {
 
     public void move(String direction) {
         //add code here
-        if(direction.equals("DOWN")){
-            super.setY(super.getY()+getSpeed());
+        if (direction.equals("DOWN")) {
+            super.setY(super.getY() + getSpeed());
         }
-        if(direction.equals("UP")){
-            super.setY(super.getY()-getSpeed());
+        if (direction.equals("UP")) {
+            super.setY(super.getY() - getSpeed());
         }
-        if(direction.equals("LEFT")){
-            super.setX(super.getX()-getSpeed());
+        if (direction.equals("LEFT")) {
+            super.setX(super.getX() - getSpeed());
         }
-        if(direction.equals("RIGHT")){
-            super.setX(super.getX()+getSpeed());
+        if (direction.equals("RIGHT")) {
+            super.setX(super.getX() + getSpeed());
         }
     }
 

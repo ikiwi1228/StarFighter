@@ -18,14 +18,13 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
     private Ship ship;
-    private Alien alienOne;
-    private Alien alienTwo;
+    //private Alien alienOne;
+    //private Alien alienTwo;
     private Bullets bullet;
-    /* uncomment once you are ready for this part
-     *
-     private AlienHorde horde;
-     private Bullets shots;
-     */
+    // uncomment once you are ready for this part
+    private AlienHorde horde;
+    private Bullets shots;
+   
     private boolean[] keys;
     private BufferedImage back;
 
@@ -37,9 +36,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         //instantiate other instance variables
         //Ship, Alien
         ship = new Ship(300,300,60,60,2);
-        alienOne = new Alien(100,100,40,40,2);
-        alienTwo = new Alien(200,100,40,40,2);
+        horde = new AlienHorde(10);
         bullet = new Bullets();
+        shots = new Bullets();
         this.addKeyListener(this);
         new Thread(this).start();
 
@@ -86,8 +85,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
             keys[4] = false;
         }
         ship.draw(graphToBack);
-        alienOne.draw(graphToBack);
-        alienTwo.draw(graphToBack);
+        horde.drawEmAll(graphToBack);
+        horde.moveEmAll();
         bullet.drawEmAll(graphToBack);
         bullet.moveEmAll();
 
@@ -107,7 +106,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
         if (ship.getY() > 600 - ship.getHeight()) {
             ship.setY(600 - ship.getHeight());
         }
-        for (Ammo a : bullet.getList()) {
+        
+        /*for (Ammo a : bullet.getList()) {
             if (a.getY() >= alienOne.getY() &&a.getY()<=alienOne.getY()+alienOne.getHeight()&&a.getX() >= alienOne.getX()&&a.getX()<= alienOne.getX()+alienOne.getWidth() ) {
                 alienOne.setHeight(0);
                 alienOne.setWidth(0);
@@ -121,6 +121,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
                 a.setHeight(0);
             }
         }
+        */
+        horde.removeDeadOnes(bullet.getList());
         twoDGraph.drawImage(back, null, 0, 0);
     }
 

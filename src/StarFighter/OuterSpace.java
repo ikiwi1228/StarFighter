@@ -107,6 +107,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
             ship.setY(600 - ship.getHeight());
         }
         
+        
         /*for (Ammo a : bullet.getList()) {
             if (a.getY() >= alienOne.getY() &&a.getY()<=alienOne.getY()+alienOne.getHeight()&&a.getX() >= alienOne.getX()&&a.getX()<= alienOne.getX()+alienOne.getWidth() ) {
                 alienOne.setHeight(0);

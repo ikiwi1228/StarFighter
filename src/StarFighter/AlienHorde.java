@@ -14,7 +14,7 @@ import java.util.List;
 public class AlienHorde {
 
     private List<Alien> aliens;
-
+    private boolean movement;
     public AlienHorde(int size) {
         aliens = new ArrayList<Alien>();
         int x=0;
@@ -41,12 +41,30 @@ public class AlienHorde {
 
     public void moveEmAll() {
         for(Alien i:aliens){
-            if(i.getX()>700){
-                i.setX(0);
-                i.setY(i.getY()+50);
-
+            if(i.getX()>760){
+                movement=true;
+                for (Alien x:aliens){
+                    x.setY(x.getY()+1);
+                }
+                //i.setY(i.getY()+50);
             }
-            i.move("RIGHT");
+            else if(i.getX()<0){
+                movement=false;
+                for (Alien x:aliens){
+                    x.setY(x.getY()+1);
+                }
+                //i.setY(i.getY()+50);
+            }
+
+            if(movement==true){
+                i.move("LEFT");
+            }
+            else if(movement==false){
+                i.move("RIGHT");
+            }
+            
+            
+
         }
     }
 
@@ -56,6 +74,8 @@ public class AlienHorde {
             for (Alien x: aliens){
                 if(i.getY()>=x.getY() && i.getY()<=x.getY()+x.getHeight() && i.getX()>=x.getX() && i.getX()<=x.getX()+x.getWidth()){
                     aliens.remove(x);
+                    i.setY(0);
+                    i.setX(0);
                     break;
                 }
                
